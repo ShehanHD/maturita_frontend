@@ -1,23 +1,8 @@
-import React, { useState } from 'react'
-import "./shared.scss";
+import React, { useState } from 'react';
 import { Modal, Fade, Backdrop, TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { URL } from './api_url';
 import sha256 from 'sha256';
-
-
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white'
-    },
-    paper: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(4, 4, 3),
-    },
-}));
+import { useStyles } from './useStyles';
 
 
 const NavBar = () => {
@@ -33,18 +18,13 @@ const NavBar = () => {
         <>
             <nav className="navbar">
                 <ul className="nav-menu">
-                    <li onClick={handleRegistrationForm}>Register</li>
+                    <li onClick={handleRegistrationForm}>Registrazione</li>
                     <li onClick={handleLoginForm}>Login</li>
                 </ul>
             </nav>
 
             <RegistrationForm open={registrationForm} setOpen={handleRegistrationForm} />
             <LoginForm open={loginForm} setOpen={handleLoginForm} />
-
-            <div className="logo">
-                <img src="https://www.seekpng.com/png/full/373-3737336_uber-clipart.png" />
-            </div>
-
         </>
     );
 }
