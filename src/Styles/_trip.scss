@@ -91,32 +91,80 @@
 
 .trip-detail {
     &-title {
+        margin-top: 2vh;
         color: whitesmoke !important;
+    }
+
+    h2 {
+        text-align: center;
+        padding: 2vh;
     }
 
     .details {
         display: flex;
-        padding: 2vh;
+        flex-direction: column;
         margin: 2vh 0;
-        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.171));
+        border-radius: 2em;
+        background: linear-gradient(to right bottom, rgba(61, 68, 80, 0.603), rgba(40, 44, 52, 0.445));
+        color: #d2d5df;
 
-        &-left {
-            flex: 1;
+        &-head {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: solid 2px gray;
+            margin-bottom: 1vh;
+            padding: 2vh 1vh;
 
-            &>img {
-                width: 17vw;
+            &>h2 {
+                text-align: center;
             }
         }
 
-        &-right {
-            flex: 2;
+        &-body {
+            display: flex;
+
+            &-left {
+                flex: 3;
+
+                &>h3 {
+                    text-align: center;
+                }
+
+                &>img {
+                    display: flex;
+                    margin: auto;
+                    width: 17vw;
+                }
+            }
+
+            &-right {
+                display: flex;
+                flex-direction: column;
+                flex: 2;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        &-foot {
+            display: flex;
+            padding: 2vh 0;
+            margin-top: 1vh;
+            border-top: solid 2px gray;
+            justify-content: space-around;
+
+            a {
+                color: #d2d5df;
+                text-decoration: none;
+            }
         }
     }
 
     .feedback {
-        padding: 2vh;
         margin: 2vh 0;
-        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.171));
+        color: #d2d5df;
+        border-radius: 2em;
+        background: linear-gradient(to right bottom, rgba(61, 68, 80, 0.918), rgba(40, 44, 52, 0.664));
     }
 }
 

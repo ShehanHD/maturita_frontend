@@ -3,6 +3,7 @@ import { URL } from '../Shared/api_url';
 import { Modal, Fade, Backdrop, Button } from '@material-ui/core';
 import { useStyles } from '../Shared/useStyles';
 import { Link } from 'react-router-dom';
+
 const ShowTrips = () => {
     const [trips, setTrips] = useState([]);
     const [open, setOpen] = useState(false);

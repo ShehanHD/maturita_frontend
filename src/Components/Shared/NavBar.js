@@ -148,6 +148,7 @@ export const RegistrationForm = ({ open, setOpen }) => {
 
                         <TextField
                             fullWidth
+                            type="password"
                             label="Password"
                             value={input.password}
                             name="password"
@@ -156,6 +157,7 @@ export const RegistrationForm = ({ open, setOpen }) => {
 
                         <TextField
                             fullWidth
+                            type="password"
                             label="Repeti password"
                             value={input.re_password}
                             name="re_password"
@@ -194,7 +196,7 @@ export const LoginForm = ({ open, setOpen }) => {
     }
 
     const handleSubmit = () => {
-        fetch(`${URL}/user/login/${input.email}/${sha256(input.password)}`)
+        fetch(`${URL}/user/login/${input.email}/${input.password}`)
             .then(response => {
                 if (response.status === 200) {
                     return response.json()
@@ -251,6 +253,7 @@ export const LoginForm = ({ open, setOpen }) => {
 
                         <TextField
                             fullWidth
+                            type="password"
                             label="password"
                             value={input.password}
                             name="password"
