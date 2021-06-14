@@ -5,18 +5,47 @@ import { Container } from '@material-ui/core'
 import Trip from './Components/Trip';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import TripDetails from './Components/Trip/TripDetails';
+import LoginForm from './Components/Shared/Login';
+import LogoutForm from './Components/Shared/Logout';
+import RegistrationForm from './Components/Shared/Register';
+import { useEffect, useState } from 'react';
+import Autista from './Components/Autista/Autista';
 
 function App() {
+  const [logoutForm, setLogoutForm] = useState(false);
+  const [loginForm, setLoginForm] = useState(false);
+  const [registrationForm, setRegistrationForm] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setAuthenticated(localStorage.getItem("jwt_token"))
+  }, [])
+
+  const handleRegistrationForm = () => setRegistrationForm(!registrationForm);
+
+  const handleLoginForm = () => setLoginForm(!loginForm);
+
+  const handleLogoutForm = () => setLogoutForm(!logoutForm);
+
   return (
     <div className="App">
       <BrowserRouter>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <NavBar />
+          <NavBar handleRegistrationForm={handleRegistrationForm} handleLoginForm={handleLoginForm} handleLogoutForm={handleLogoutForm} auth={authenticated} />
+
+          <RegistrationForm open={registrationForm} setOpen={handleRegistrationForm} setAuthenticated={setAuthenticated} />
+          <LoginForm open={loginForm} setOpen={handleLoginForm} setAuthenticated={setAuthenticated} />
+          <LogoutForm open={logoutForm} setOpen={handleLogoutForm} setAuthenticated={setAuthenticated} />
 
           <Container maxWidth="md">
             <Switch>
               <Route exact path="/" component={Trip} />
-              <Route exact path="/:trip_id" component={TripDetails} />
+              <Route exact path="/autista">
+                <Autista auth={authenticated} />
+              </Route>
+              <Route exact path="/:trip_id">
+                <TripDetails auth={authenticated} />
+              </Route>
             </Switch>
           </Container>
         </MuiPickersUtilsProvider>

@@ -23,6 +23,22 @@
             cursor: pointer;
         }
 
+        a {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            color: #d2d5df;
+            text-decoration: none;
+        }
+
+        .logout {
+            color: red;
+        }
+
+        .logout:hover {
+            box-shadow: 0 2px 0px 0px red;
+        }
+
     }
 }
 

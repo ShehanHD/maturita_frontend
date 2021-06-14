@@ -89,13 +89,22 @@
 
 }
 
+.MuiAccordionDetails-root {
+    display: block !important;
+}
+
+.MuiPaper-root {
+    background-color: inherit !important;
+}
+
 .trip-detail {
     &-title {
         margin-top: 2vh;
         color: whitesmoke !important;
     }
 
-    h2 {
+    h2,
+    h4 {
         text-align: center;
         padding: 2vh;
     }
@@ -107,6 +116,9 @@
         border-radius: 2em;
         background: linear-gradient(to right bottom, rgba(61, 68, 80, 0.603), rgba(40, 44, 52, 0.445));
         color: #d2d5df;
+        box-shadow: 0px 3px 1px -2px #00000033,
+            0px 2px 2px 0px #00000024,
+            0px 1px 5px 0px #0000001f;
 
         &-head {
             display: flex;
@@ -164,7 +176,43 @@
         margin: 2vh 0;
         color: #d2d5df;
         border-radius: 2em;
-        background: linear-gradient(to right bottom, rgba(61, 68, 80, 0.918), rgba(40, 44, 52, 0.664));
+        background: linear-gradient(to right bottom, rgba(8, 77, 64, 0.918), rgba(8, 71, 60, 0.664));
+        box-shadow: 0px 3px 1px -2px #00000033,
+            0px 2px 2px 0px #00000024,
+            0px 1px 5px 0px #0000001f;
+
+        &-body {
+            padding: 0 3vw;
+
+            &>p {
+                margin: 1vh;
+            }
+        }
+
+        &-foot {
+            &>h3 {
+                margin-right: 10px;
+            }
+
+            display: flex;
+            padding: 2vh 0;
+            margin-top: 1vh;
+            border-top: solid 2px gray;
+            justify-content: center;
+            align-items: flex-start;
+
+            #rating {
+                display: flex !important;
+                align-items: center;
+            }
+
+            &>span>span>span>span {
+                border: solid white 1px !important;
+                margin: 2px;
+                height: 20px !important;
+                width: 20px !important;
+            }
+        }
     }
 }
 
@@ -172,9 +220,17 @@
     border-bottom: red !important;
 }
 
-body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogContent-root.MuiPickersModal-dialog>div>div.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters,
-body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogContent-root.MuiPickersModal-dialog>div>div.MuiPickersBasePicker-pickerView>div.MuiPickersSlideTransition-transitionContainer.MuiPickersCalendar-transitionContainer>div>div:nth-child(2)>div:nth-child(4)>button {
-    background-color: #1a2f1e
+.MuiPickersBasePicker-pickerView {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.MuiDialogActions-root {
+    background-color: rgb(231, 252, 224);
+}
+
+body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogContent-root.MuiPickersModal-dialog>div>div.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters {
+    background-color: #194622 !important;
+    color: white !important
 }
 
 body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogActions-root.MuiDialogActions-spacing>button>span.MuiButton-label {

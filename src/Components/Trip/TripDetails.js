@@ -1,15 +1,18 @@
-import { Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { URL } from '../Shared/api_url';
+import Rating from 'react-rating';
 
-const TripDetails = () => {
+const TripDetails = ({ auth }) => {
     let { trip_id } = useParams();
     const [tripDetail, setTripDetail] = useState([])
     const [feedback, setFeedback] = useState([])
     const [feedbackMsg, setFeedbackMsg] = useState("Deve fare il Login prima di visualizzare i contenuti")
     const [dMsg, setDMsg] = useState("Loading....")
-    const [authenticated, setAuthenticated] = useState("");
+    const [authenticated, setAuthenticated] = useState(false);
+    const [show, setShow] = useState(false)
+
 
     useEffect(() => {
         getDetails();
@@ -17,8 +20,13 @@ const TripDetails = () => {
     }, [])
 
     useEffect(() => {
-        tripDetail.length !== 0 && getFeedback();
-    }, [tripDetail])
+        setAuthenticated(auth);
+    }, [auth])
+
+    useEffect(() => {
+        feedback.length === 0 && getFeedback();
+        auth === false && setFeedback([])
+    }, [show])
 
     const getDetails = () => {
         fetch(`${URL}/trip/by_id/${trip_id}`)
@@ -44,11 +52,12 @@ const TripDetails = () => {
 
     const getFeedback = () => {
         let id_autista = tripDetail.id_autista;
+        let a = auth ?? localStorage.getItem("jwt_token");
 
         fetch(`${URL}/feedback/by_passenger/${id_autista}`, {
             contentType: 'application/json',
             headers: {
-                'Authorization': `Bearer ${authenticated}`
+                'Authorization': `Bearer ${a}`
             }
         })
             .then(response => {
@@ -59,6 +68,7 @@ const TripDetails = () => {
             })
             .then(data => {
                 if (data.body) {
+                    console.log(data.body)
                     setFeedback(data.body)
                 }
                 else {
@@ -81,13 +91,27 @@ const TripDetails = () => {
                 {tripDetail.length !== 0 ? <Details tripDetail={tripDetail} /> : <h2>{dMsg}</h2>}
             </div>
 
-            <h1 className="trip-detail-title">Feedback</h1>
+
             {/* Feedback al autista se fatto il login */}
-            <>
-                {feedback.length !== 0
+            <div>
+                {/* {feedback.length
                     ? feedback.map(item => <Feedback key={item.id} feedbackDetail={item} />)
-                    : <div className="feedback"><h2>{feedbackMsg}</h2></div>}
-            </>
+                    : <div className="feedback"><h2>{feedbackMsg}</h2></div>} */}
+
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<i className="fas fa-arrow-down" style={{ color: "white" }}></i>}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        onClick={() => setShow(!show)}
+                    >
+                        <h1 className="trip-detail-title">Feedback</h1>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        {feedback.length === 0 && authenticated === false ? <h2 style={{ color: "white" }}>{feedbackMsg}</h2> : feedback.map(item => <Feedback key={item.id} feedbackDetail={item} />)}
+                    </AccordionDetails>
+                </Accordion>
+            </div>
         </div>
     )
 }
@@ -109,7 +133,7 @@ export const Details = ({ tripDetail }) => {
                 </div>
 
                 <div className="details-body-right">
-                    <p><b>Trip ID: </b>{tripDetail.id}</p>
+                    <p><b>ID viaggio: </b>{tripDetail.id}</p>
                     <p><b>Partenza da: </b>{tripDetail.partenza}</p>
                     <p><b>Destinazione a: </b>{tripDetail.destinazione}</p>
                     <p><b>Data di partenza: </b>{tripDetail.data_di_partenza}</p>
@@ -133,13 +157,20 @@ export const Feedback = ({ feedbackDetail }) => {
     return (
         <div className="feedback">
             <div className="details-head">
-                head
+                <h3>ID viaggio: {feedbackDetail.id_viaggio}</h3>
             </div>
-            <div className="details-body">
-                body
+            <div className="feedback-body">
+                <p>Da: {feedbackDetail.nome} {feedbackDetail.cognome}</p>
+                <p>Giudizio: {feedbackDetail.giudizio}</p>
             </div>
-            <div className="details-foot">
-                foot
+            <div className="feedback-foot">
+                <h3 htmlFor="rating">Voto:</h3>
+                <Rating
+                    id="rating"
+                    readonly
+                    initialRating={feedbackDetail.voto}
+                    onChange={(e) => console.log(e)}
+                />
             </div>
         </div>
     )
