@@ -17,22 +17,25 @@ const NavBar = ({ handleRegistrationForm, handleLoginForm, handleLogoutForm, aut
     return (
         <>
             <nav className="navbar">
-                <Link to={'/'}>weShare</Link>
-                <ul className="nav-menu">
-                    {
-                        localStorage.getItem("jwt_token") !== "false"
-                            ?
-                            <>
-                                <li><Link to={'/autista'}>Autista</Link></li>
-                                <li className="logout" onClick={handleLogoutForm}>Logout</li>
-                            </>
-                            :
-                            <>
-                                <li onClick={handleRegistrationForm}>Registrazione</li>
-                                <li onClick={handleLoginForm}>Login</li>
-                            </>
-                    }
-                </ul>
+                <div>
+                    <h2><Link to={'/'}>weShare</Link></h2>
+                    <ul className="nav-menu">
+                        {
+                            localStorage.getItem("jwt_token") !== "false"
+                                ?
+                                <>
+                                    <li><Link to={'/passeggero'}>Passeggero</Link></li>
+                                    <li><Link to={'/autista'}>Autista</Link></li>
+                                    <li className="logout" onClick={handleLogoutForm}>Logout</li>
+                                </>
+                                :
+                                <>
+                                    <li onClick={handleRegistrationForm}>Registrazione</li>
+                                    <li onClick={handleLoginForm}>Login</li>
+                                </>
+                        }
+                    </ul>
+                </div>
             </nav>
         </>
     );

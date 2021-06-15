@@ -3,13 +3,15 @@ import DateFnsUtils from '@date-io/date-fns';
 import NavBar from './Components/Shared/NavBar';
 import { Container } from '@material-ui/core'
 import Trip from './Components/Trip';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import TripDetails from './Components/Trip/TripDetails';
 import LoginForm from './Components/Shared/Login';
 import LogoutForm from './Components/Shared/Logout';
 import RegistrationForm from './Components/Shared/Register';
 import { useEffect, useState } from 'react';
 import Autista from './Components/Autista/Autista';
+import Passenger from './Components/Passenger/Passenger';
+import AutistaTripDetails from './Components/Autista/AutistaTripDetails';
 
 function App() {
   const [logoutForm, setLogoutForm] = useState(false);
@@ -41,10 +43,20 @@ function App() {
             <Switch>
               <Route exact path="/" component={Trip} />
               <Route exact path="/autista">
-                <Autista auth={authenticated} />
+                {authenticated && <Autista auth={authenticated} />
+                }
+              </Route>
+              <Route exact path="/autista/trip_details/:trip_id">
+                {authenticated && <AutistaTripDetails auth={authenticated} />
+                }
+              </Route>
+              <Route exact path="/passeggero">
+                {authenticated && <Passenger auth={authenticated} />
+                }
               </Route>
               <Route exact path="/:trip_id">
-                <TripDetails auth={authenticated} />
+                {authenticated && <TripDetails auth={authenticated} />
+                }
               </Route>
             </Switch>
           </Container>

@@ -1,6 +1,6 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { URL } from '../Shared/api_url';
 import Rating from 'react-rating';
 
@@ -12,9 +12,10 @@ const TripDetails = ({ auth }) => {
     const [dMsg, setDMsg] = useState("Loading....")
     const [authenticated, setAuthenticated] = useState(false);
     const [show, setShow] = useState(false)
-
+    let history = useHistory();
 
     useEffect(() => {
+        localStorage.getItem("jwt_token") === "" && history.push('/')
         getDetails();
         setAuthenticated(localStorage.getItem("jwt_token"))
     }, [])
@@ -52,7 +53,7 @@ const TripDetails = ({ auth }) => {
 
     const getFeedback = () => {
         let id_autista = tripDetail.id_autista;
-        let a = auth ?? localStorage.getItem("jwt_token");
+        let a = localStorage.getItem("jwt_token");
 
         fetch(`${URL}/feedback/by_passenger/${id_autista}`, {
             contentType: 'application/json',
@@ -119,6 +120,40 @@ const TripDetails = ({ auth }) => {
 export default TripDetails
 
 export const Details = ({ tripDetail }) => {
+    const bookTrip = () => {
+        let id_viaggio = tripDetail.id;
+        let a = localStorage.getItem("jwt_token");
+
+        fetch(`${URL}/reservation/on/${id_viaggio}`, {
+            method: "POST",
+            contentType: 'application/json',
+            headers: {
+                'Authorization': `Bearer ${a}`
+            }
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                };
+                throw response;
+            })
+            .then(data => {
+                if (data.body) {
+                    console.log(data.body)
+                }
+                else {
+                    console.error(data.message);
+                    //dispatch(callNotification(data.message, "warning"));
+                }
+            })
+            .catch(err => {
+
+                if (err.status === 400) {
+                    err.json().then((d) => console.error(d.body.error_msg))
+                }
+            })
+    }
+
     return (
         <>
             <div className="details-head">
@@ -138,16 +173,17 @@ export const Details = ({ tripDetail }) => {
                     <p><b>Destinazione a: </b>{tripDetail.destinazione}</p>
                     <p><b>Data di partenza: </b>{tripDetail.data_di_partenza}</p>
                     <p><b><i className="far fa-clock"></i></b> {tripDetail.durata} ore</p>
-                    <p><b><i className="fas fa-paw"></i></b> {tripDetail.animali ? "SI" : "NO"}</p>
-                    <p><b><i className="fas fa-suitcase"></i></b> {tripDetail.bagagli ? "SI" : "NO"}</p>
+                    <p><b><i className="fas fa-paw"></i></b> {tripDetail.animali === "1" ? "SI" : "NO"}</p>
+                    <p><b><i className="fas fa-suitcase"></i></b> {tripDetail.bagagli === "1" ? "SI" : "NO"}</p>
                     <p><b><i className="fas fa-ban"></i></b> {tripDetail.soste}</p>
-                    <p><b><i className="fas fa-user"></i></b> {tripDetail.soste}</p>
+                    <p><b><i className="fas fa-user"></i></b> {tripDetail.numero_posti}</p>
                 </div>
             </div>
             <div className="details-foot">
                 <b>{tripDetail.nome} {tripDetail.cognome}</b>
                 <b><a href={"mailto:" + tripDetail.email}>{tripDetail.email}</a></b>
                 <b><a href={"tel:+" + tripDetail.telefono}>{tripDetail.telefono}</a></b>
+                <Button variant={"contained"} color={"primary"} onClick={bookTrip}>Prenota</Button>
             </div>
         </>
     )

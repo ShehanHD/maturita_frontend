@@ -16,7 +16,7 @@ export const LoginForm = ({ open, setOpen, setAuthenticated }) => {
     }
 
     const handleSubmit = () => {
-        fetch(`${URL}/user/login/${input.email}/${(input.password)}`)
+        fetch(`${URL}/user/login/${input.email}/${sha256(input.password)}`)
             .then(response => {
                 if (response.status === 200) {
                     return response.json()

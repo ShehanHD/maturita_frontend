@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Modal, Fade, Backdrop, TextField, Button } from '@material-ui/core';
-import { URL } from './api_url';
-import sha256 from 'sha256';
+import React from 'react';
+import { Modal, Fade, Backdrop, Button } from '@material-ui/core';
 import { useStyles } from './useStyles';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export const LogoutForm = ({ open, setOpen, setAuthenticated }) => {
     const classes = useStyles();
+    let history = useHistory()
 
     const handleLogout = () => {
         setAuthenticated(localStorage.setItem("jwt_token", false));
         setAuthenticated(false);
         setOpen();
+        history.push('/')
     }
 
     return (

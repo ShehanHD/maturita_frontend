@@ -3,10 +3,10 @@ import { DatePicker } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
 import { URL } from '../Shared/api_url';
+import { Autocomplete } from '@material-ui/lab';
 
 const TripFilter = ({ setTrips }) => {
     const [cities, setCities] = useState([]);
-    const [filtered, setFiltered] = useState([])
     const [trip, setTrip] = useState({
         partenza: "",
         destinazione: "",
@@ -89,20 +89,54 @@ const TripFilter = ({ setTrips }) => {
         }
     }
 
+    const handleDeparture = (e, val) => {
+        val && setTrip({ ...trip, partenza: (val.comune) })
+    }
+
+    const handleDestination = (e, val) => {
+        val && setTrip({ ...trip, destinazione: (val.comune) })
+    }
+
     return (
         <div className="trip-filter">
-            <TextField
-                label="Partenza"
-                name={"partenza"}
-                value={trip.partenza}
-                onChange={inputHandle}
+            <Autocomplete
+                style={{ width: "22%" }}
+                autoComplete
+                includeInputInList
+                filterSelectedOptions
+                value={cities.comune}
+                onChange={handleDeparture}
+                options={cities || []}
+                getOptionLabel={(c) => c.comune ?? ""}
+                renderInput={(params) => (
+                    <TextField
+                        required
+                        {...params}
+                        label="Partenza"
+                        variant="standard"
+                    />
+
+                )}
             />
 
-            <TextField
-                label="Destinazione"
-                name={"destinazione"}
-                value={trip.destinazione}
-                onChange={inputHandle}
+            <Autocomplete
+                style={{ width: "22%" }}
+                autoComplete
+                includeInputInList
+                filterSelectedOptions
+                value={cities.comune}
+                onChange={handleDestination}
+                options={cities || []}
+                getOptionLabel={(c) => c.comune ?? ""}
+                renderInput={(params) => (
+                    <TextField
+                        required
+                        {...params}
+                        label="Destinazione"
+                        variant="standard"
+                    />
+
+                )}
             />
 
             <DatePicker

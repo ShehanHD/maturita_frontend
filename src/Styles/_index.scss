@@ -25,8 +25,15 @@
 }
 
 .MuiPickersDay-daySelected,
-.MuiButton-containedPrimary {
+.MuiButton-containedPrimary,
+.MuiPickersToolbar-toolbar,
+.MuiPickerDTTabs-tabs,
+.MuiPickersClockPointer-pointer {
   background-color: $primary-color !important;
+}
+
+.MuiPickersClockPointer-thumb {
+  border-color: $primary-color !important;
 }
 
 .MuiButton-outlinedSecondary {
@@ -60,4 +67,27 @@ body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.Mu
   box-shadow: 0px 3px 1px -2px #00000033,
     0px 2px 2px 0px #00000024,
     0px 1px 5px 0px #0000001f;
+}
+
+.MuiTab-textColorPrimary.Mui-selected {
+  color: $primary-color !important;
+  font-weight: 700;
+}
+
+.PrivateTabIndicator-colorPrimary-4,
+.PrivateTabIndicator-colorPrimary-8 {
+  background-color: $primary-color !important;
+}
+
+.MuiTab-textColorPrimary {
+  color: white !important;
+}
+
+.MuiAutocomplete-option {
+  background-color: rgba(43, 43, 43, 0.774) !important;
+  color: white !important;
+}
+
+.MuiAutocomplete-option:hover {
+  background-color: rgb(128, 128, 128) !important;
 }

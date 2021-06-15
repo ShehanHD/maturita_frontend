@@ -1,0 +1,91 @@
+.driver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3vh;
+
+
+    &-list {
+        padding: 2vh 15vh;
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.171));
+        box-shadow: 0 0 3px 1px #1c2120;
+        border-radius: 1em;
+
+        &>div {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+            margin: 1vh 0;
+            align-items: center;
+            width: max-content;
+            margin: auto;
+
+            .inputs {
+                margin: 2vh 0;
+            }
+        }
+    }
+}
+
+.vehicle {
+    width: inherit;
+
+    .trip-list {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.171));
+        box-shadow: 0 0 3px 1px #1c2120;
+        padding: 2vh;
+        margin: 3vh auto;
+        border-radius: 1em;
+        align-items: center;
+
+        &-head {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            border-bottom: solid #626264 2px;
+            margin-bottom: 1vh;
+            padding-bottom: 1vh;
+        }
+
+        &-body {
+            display: flex;
+            width: 100%;
+            align-items: center;
+
+            &>.image {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 2;
+                overflow: hidden;
+
+                &>img {
+                    width: 20vh;
+                }
+            }
+
+            &>.details {
+                flex: 3;
+
+                &>h3 {
+                    line-height: 2em;
+                }
+            }
+        }
+
+        &-foot {
+            display: flex;
+            flex: 3;
+            text-align: center;
+            width: 100%;
+            border-top: solid #626264 2px;
+            margin-top: 1vh;
+            padding-top: 1vh;
+            justify-content: flex-end;
+        }
+    }
+}

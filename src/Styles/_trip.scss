@@ -52,16 +52,16 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    flex: 1;
+                    flex: 2;
                     overflow: hidden;
 
                     &>img {
-                        width: 6vh;
+                        width: 10vh;
                     }
                 }
 
                 &>.details {
-                    flex: 4;
+                    flex: 2;
                 }
 
                 &>.contribute {
@@ -145,7 +145,7 @@
                 &>img {
                     display: flex;
                     margin: auto;
-                    width: 17vw;
+                    width: 30vw;
                 }
             }
 
@@ -164,6 +164,7 @@
             margin-top: 1vh;
             border-top: solid 2px gray;
             justify-content: space-around;
+            align-items: center;
 
             a {
                 color: #d2d5df;
