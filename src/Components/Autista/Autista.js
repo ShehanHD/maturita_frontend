@@ -94,10 +94,14 @@ const Autista = ({ auth }) => {
                     >
                         <Tab label="Viaggi" />
                         <Tab label="Veicoli" />
+                        <Tab label="Prenotazioni" />
+                        <Tab label="Feedback" />
                     </Tabs>
                     <div div className="driver">
                         {selectedTab === 0 && <CreateTrip vehicles={vehicles} />}
                         {selectedTab === 1 && <AddVehicle vehicles={vehicles} setVehicles={setVehicles} />}
+                        {selectedTab === 2 && <img src="https://www.equipe4x4.com/wp-content/uploads/2014/07/Sito-Under-Construction-Gif1.gif" style={{ width: "100%" }} />}
+                        {selectedTab === 3 && <img src="https://www.equipe4x4.com/wp-content/uploads/2014/07/Sito-Under-Construction-Gif1.gif" style={{ width: "100%" }} />}
                     </div>
                 </>
                 :

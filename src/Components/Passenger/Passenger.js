@@ -28,8 +28,8 @@ const Passenger = () => {
                 <Tab label="Feedback" />
             </Tabs>
             <div div className="driver">
-                {selectedTab === 0 && <p>as</p>}
-                {selectedTab === 1 && <p>s</p>}
+                {selectedTab === 0 && <img src="https://www.equipe4x4.com/wp-content/uploads/2014/07/Sito-Under-Construction-Gif1.gif" style={{ width: "100%" }} />}
+                {selectedTab === 1 && <img src="https://www.equipe4x4.com/wp-content/uploads/2014/07/Sito-Under-Construction-Gif1.gif" style={{ width: "100%" }} />}
             </div>
         </>
     )
