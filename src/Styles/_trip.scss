@@ -1,0 +1,239 @@
+#trip {
+    .trip-filter {
+        display: flex;
+        background: linear-gradient(to right bottom, rgba(110, 110, 110, 0.5), rgba(110, 110, 110, 0.171));
+        box-shadow: 0 0 3px 1px #1c2120;
+        padding: 2vh;
+        margin: 2vh 0;
+        border-radius: 1em;
+        align-items: flex-end;
+        justify-content: space-evenly;
+
+        input {
+            text-align: center;
+            color: white;
+        }
+
+        label {
+            color: whitesmoke;
+        }
+    }
+
+    .trip-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .trip-list {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.171));
+            box-shadow: 0 0 3px 1px #1c2120;
+            padding: 2%;
+            margin: 1vh 0;
+            border-radius: 1em;
+            align-items: center;
+
+            &-head {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+                border-bottom: solid #626264 2px;
+                margin-bottom: 1vh;
+                padding-bottom: 1vh;
+            }
+
+            &-body {
+                display: flex;
+                width: 100%;
+                align-items: center;
+
+                &>.image {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex: 2;
+                    overflow: hidden;
+
+                    &>img {
+                        width: 10vh;
+                    }
+                }
+
+                &>.details {
+                    flex: 2;
+                }
+
+                &>.contribute {
+                    flex: 1;
+
+                    &>h2,
+                    &>h4 {
+                        text-align: right;
+                    }
+                }
+            }
+
+            &-foot {
+                display: flex;
+                flex: 3;
+                text-align: center;
+                width: 100%;
+                border-top: solid #626264 2px;
+                margin-top: 1vh;
+                padding-top: 1vh;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+}
+
+.MuiAccordionDetails-root {
+    display: block !important;
+}
+
+.MuiPaper-root {
+    background-color: inherit !important;
+}
+
+.trip-detail {
+    &-title {
+        margin-top: 2vh;
+        color: whitesmoke !important;
+    }
+
+    h2,
+    h4 {
+        text-align: center;
+        padding: 2vh;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        margin: 2vh 0;
+        border-radius: 2em;
+        background: linear-gradient(to right bottom, rgba(61, 68, 80, 0.603), rgba(40, 44, 52, 0.445));
+        color: #d2d5df;
+        box-shadow: 0px 3px 1px -2px #00000033,
+            0px 2px 2px 0px #00000024,
+            0px 1px 5px 0px #0000001f;
+
+        &-head {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: solid 2px gray;
+            margin-bottom: 1vh;
+            padding: 2vh 1vh;
+
+            &>h2 {
+                text-align: center;
+            }
+        }
+
+        &-body {
+            display: flex;
+
+            &-left {
+                flex: 3;
+
+                &>h3 {
+                    text-align: center;
+                }
+
+                &>img {
+                    display: flex;
+                    margin: auto;
+                    width: 30vw;
+                }
+            }
+
+            &-right {
+                display: flex;
+                flex-direction: column;
+                flex: 2;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        &-foot {
+            display: flex;
+            padding: 2vh 0;
+            margin-top: 1vh;
+            border-top: solid 2px gray;
+            justify-content: space-around;
+            align-items: center;
+
+            a {
+                color: #d2d5df;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .feedback {
+        margin: 2vh 0;
+        color: #d2d5df;
+        border-radius: 2em;
+        background: linear-gradient(to right bottom, rgba(8, 77, 64, 0.918), rgba(8, 71, 60, 0.664));
+        box-shadow: 0px 3px 1px -2px #00000033,
+            0px 2px 2px 0px #00000024,
+            0px 1px 5px 0px #0000001f;
+
+        &-body {
+            padding: 0 3vw;
+
+            &>p {
+                margin: 1vh;
+            }
+        }
+
+        &-foot {
+            &>h3 {
+                margin-right: 10px;
+            }
+
+            display: flex;
+            padding: 2vh 0;
+            margin-top: 1vh;
+            border-top: solid 2px gray;
+            justify-content: center;
+            align-items: flex-start;
+
+            #rating {
+                display: flex !important;
+                align-items: center;
+            }
+
+            &>span>span>span>span {
+                border: solid white 1px !important;
+                margin: 2px;
+                height: 20px !important;
+                width: 20px !important;
+            }
+        }
+    }
+}
+
+#trip>div.trip-filter>div>div::after {
+    border-bottom: red !important;
+}
+
+.MuiPickersBasePicker-pickerView {
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.MuiDialogActions-root {
+    background-color: rgb(231, 252, 224);
+}
+
+body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogContent-root.MuiPickersModal-dialog>div>div.MuiToolbar-root.MuiToolbar-regular.MuiPickersToolbar-toolbar.MuiPickersDatePickerRoot-toolbar.MuiToolbar-gutters {
+    background-color: #194622 !important;
+    color: white !important
+}
+
+body>div.MuiDialog-root>div.MuiDialog-container.MuiDialog-scrollPaper>div>div.MuiDialogActions-root.MuiDialogActions-spacing>button>span.MuiButton-label {
+    color: #282c34
+}
