@@ -40,20 +40,14 @@ const DriverData = () => {
                 throw "dati patente non sono inseriti bene";
             })
             .then(data => {
-                console.log(data)
-                if (data.body) {
-                    //dispatch(callNotification(data.message, "success"));
-                    setInput({
-                        numero_patente: "",
-                        grado: "",
-                        rilasciato: new Date(),
-                        scadenza: new Date()
-                    });
-                }
-                else {
-                    console.error(data.message)
-                    //dispatch(callNotification(data.message, "warning"));
-                }
+                //dispatch(callNotification(data.message, "success"));
+                setInput({
+                    numero_patente: "",
+                    grado: "",
+                    rilasciato: new Date(),
+                    scadenza: new Date()
+                });
+
             })
             .catch(err => {
                 console.log(err);
@@ -86,7 +80,7 @@ const DriverData = () => {
                     <TextField
                         fullWidth
                         className="inputs"
-                        label="Destinazione"
+                        label="Grado"
                         name={"grado"}
                         value={input.grado}
                         onChange={inputHandle}

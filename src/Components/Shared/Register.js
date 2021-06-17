@@ -39,31 +39,25 @@ const RegistrationForm = ({ open, setOpen, setAuthenticated }) => {
         })
             .then(response => {
                 if (response.status === 200) {
+                    setOpen()
                     return response.json()
                 };
                 throw "Login Failed";
             })
             .then(data => {
-                console.log(data)
-                if (data.body) {
-                    //dispatch(callNotification(data.message, "success"));
-                    console.log(data.message)
-                    setAuthenticated(data.body.JWT_TOKEN)
-                    localStorage.setItem("jwt__token", data.body.JWT_TOKEN);
-                    setInput({
-                        nome: "",
-                        cognome: "",
-                        email: "",
-                        telefono: "",
-                        password: "",
-                        re_password: "",
-                        carta_identita: ""
-                    });
-                }
-                else {
-                    console.error(data.message)
-                    //dispatch(callNotification(data.message, "warning"));
-                }
+                //dispatch(callNotification(data.message, "success"));
+                console.log(data.message)
+                setAuthenticated(data.body.JWT_TOKEN)
+                localStorage.setItem("jwt__token", data.body.JWT_TOKEN);
+                setInput({
+                    nome: "",
+                    cognome: "",
+                    email: "",
+                    telefono: "",
+                    password: "",
+                    re_password: "",
+                    carta_identita: ""
+                });
             })
             .catch(err => {
                 console.log(err);
