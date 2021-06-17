@@ -1,10 +1,11 @@
 version: "3.7"
 
 services:
-  sample-prod:
-    container_name: sample-prod
+  carpool-prod:
+    container_name: carpool-prod
     build:
       context: .
       dockerfile: Dockerfile.prod
     ports:
-      - "55556:80"
+      - "55555:80"
+# docker-compose -f docker-compose.prod.yml up -d --build
